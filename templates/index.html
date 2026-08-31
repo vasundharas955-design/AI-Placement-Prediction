@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Console</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                🚀
+            </div>
+            <div>
+                <h2>Placement Console</h2>
+                <span>
+                    Predict • Analyze • Succeed
+                </span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard"
+               class="nav-item active">
+                🏠
+                <span>
+                    Dashboard
+                </span>
+            </a>
+            <a href="#prediction"
+               class="nav-item">
+                ⚡
+                <span>
+                    Prediction
+                </span>
+            </a>
+        </nav>
+        <div class="sidebar-message">
+            <div class="message-icon">
+                ⭐
+            </div>
+            <p>
+                Every step today<br>
+                builds your success<br>
+                tomorrow.
+            </p>
+
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                👩‍💻
+            </div>
+            <div>
+                <strong>
+                    Student
+                </strong>
+                <small>
+                    AI / ML Learner
+                </small>
+            </div>
+            <span>
+            </span>
+        </div>
+    </aside>
+    <main class="main-content">
+        <header class="top-header">
+            <div>
+                <span class="header-label">
+                    AI PLACEMENT ANALYSIS
+                </span>
+                <h1>
+                    Welcome Back 👋
+                </h1>
+                <p>
+                    Analyze your profile and discover your
+                    placement potential.
+                </p>
+
+            </div>
+            <div class="header-right">
+                <div class="notification">
+                    🔔
+                </div>
+                <div class="header-profile">
+                    <div class="small-avatar">
+                        👩‍💻
+                    </div>
+                    <div>
+                        <strong>
+                            Student
+                        </strong>
+                        <small>
+                            AI / ML Learner
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="dashboard">
+            <div class="metric-grid">
+                <div class="metric-card purple">
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            🎯
+                        </div>
+                    </div>
+                    <span class="metric-title">
+                        Input Features
+                    </span>
+                    <strong class="metric-value">
+                        7
+                    </strong>
+                    <small>
+                        Student profile parameters
+                    </small>
+                </div>
+                <div class="metric-card blue">
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            🤖
+                        </div>
+                    </div>
+                    <span class="metric-title">
+                        Model Type
+                    </span>
+                    <strong class="metric-value">
+                        ML
+                    </strong>
+                    <small>
+                        Classification model
+                    </small>
+                </div>
+                <div class="metric-card green">
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            💼
+                        </div>
+                    </div>
+                    <span class="metric-title">
+                        Placement Result
+                    </span>
+                    <strong class="metric-value">
+                        {% if prediction %}
+                            {% if "not likely" in prediction %}
+                                Low
+                            {% else %}
+                                High
+                            {% endif %}
+                        {% else %}
+                        {% endif %}
+                    </strong>
+                    <small>
+                        Based on ML prediction
+                    </small>
+                </div>
+                <div class="metric-card pink">
+                    <div class="metric-top">
+                        <div class="metric-icon">
+                            📊
+                        </div>
+                    </div>
+                    <span class="metric-title">
+                        Prediction Status
+                    </span>
+                    <strong class="metric-value">
+                        {% if prediction %}
+                            Ready
+                        {% else %}
+                            Waiting
+                        {% endif %}
+                    </strong>
+                    <small>
+                        Live prediction system
+                    </small>
+                </div>
+            </div>
+            <div class="prediction-layout">
+                <section id="prediction"
+                         class="prediction-card">
+                    <div class="card-heading">
+                        <div>
+                            <span class="heading-label">
+                                AI PREDICTION ENGINE
+                            </span>
+                            <h2>
+                                Predict Your Placement
+                            </h2>
+                            <p>
+                                Enter your academic and skill details.
+                            </p>
+                        </div>
+                        <div class="heading-icon">
+                            🤖
+                        </div>
+                    </div>
+                    <form action="/predict"
+                          method="POST"
+                          id="predictionForm">
+                        <div class="input-grid">
+
+                            <div class="input-group">
+                                <label>
+                                    ⭐ CGPA
+                                    <span>(out of 10)</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        🎓
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="CGPA"  
+                                        value="{{ CGPA if CGPA is defined else '' }}"
+                                        min="0"
+                                        max="10"
+                                        step="0.01"
+                                        required
+                                    >
+                                </div>
+
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    💻 Projects
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        📁
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="Projects"  
+                                        value="{{ Projects if Projects is defined else '' }}"                             
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    🏢 Internships
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        💼
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="Internships" 
+                                         value="{{ Internships if Internships is defined else '' }}"                                      
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    📝 Aptitude Test Score
+                                    <span>(out of 100)</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        🧠
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="AptitudeTestScore" 
+                                        value="{{ AptitudeTestScore if AptitudeTestScore is defined else '' }}"                                  
+                                        min="0"
+                                        max="100"
+                                        step="0.01"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    🏆 Certifications
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        🏅
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="Certifications" 
+                                        value="{{ Certifications if Certifications is defined else '' }}"
+                                        min="0"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    😊 Soft Skills Rating
+                                    <span>(out of 5)</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        🤝
+                                    </span>
+                                    <input
+                                        type="number"
+                                        name="SoftSkillsRating" 
+                                        value="{{ SoftSkillsRating if SoftSkillsRating is defined else '' }}"                                      
+                                        min="0"
+                                        max="5"
+                                        step="0.01"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>
+                                    🎓 Placement Training
+                                </label>
+                                <div class="input-wrapper">
+                                    <span>
+                                        📚
+                                    </span>
+                                    <select name="PlacementTraining" required>
+
+    <option value="" disabled
+        {% if not PlacementTraining is defined %}selected{% endif %}>
+        Select Status
+    </option>
+
+    <option value="Yes"
+        {% if PlacementTraining is defined and PlacementTraining == 'Yes' %}selected{% endif %}>
+        Yes
+    </option>
+
+    <option value="No"
+        {% if PlacementTraining is defined and PlacementTraining == 'No' %}selected{% endif %}>
+        No
+    </option>
+
+</select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="predict-button">
+                            🚀 Predict Now
+                        </button>
+                        <p class="secure-text">
+                            🔒 Your data is secure and used
+                            only for prediction.
+                        </p>
+                    </form>
+                </section>
+                <section class="result-card">
+                    <div class="result-heading">
+                        <div>
+                            <span class="heading-label">
+                                AI ANALYSIS
+                            </span>
+                            <h2>
+                                Prediction Result
+                            </h2>
+                            <p>
+                                Result generated by your ML model.
+                            </p>
+                        </div>
+                        <div class="result-status">
+                            ● LIVE
+                        </div>
+                    </div>
+                    <div class="result-gauge">
+                        <div class="gauge-circle">
+                            <div class="gauge-content">
+                                {% if prediction %}
+                                    {% if "not likely" in prediction %}
+                                        <strong>
+                                            NO
+                                        </strong>
+                                        <span>
+                                            Low Chance
+                                        </span>
+                                    {% else %}
+                                        <strong>
+                                            YES
+                                        </strong>
+                                        <span>
+                                            Good Chance
+                                        </span>
+                                    {% endif %}
+                                {% else %}
+                                    <strong>                           
+                                    </strong>
+                                    <span>
+                                        Awaiting Input
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-message">
+                        <span>
+                            💡
+                        </span>
+                        <div>
+                            {% if prediction %}
+                                <strong>
+                                    {% if "not likely" in prediction %}
+                                        Placement Chance is Low
+                                    {% else %}
+                                        Student is Likely to be Placed
+                                    {% endif %}
+                                </strong>
+                                <p>
+                                    {{ prediction }}
+                                </p>
+                            {% else %}
+                                <strong>
+                                    Ready for Analysis
+                                </strong>
+                                <p>
+                                    Enter your details and click
+                                    Predict Now to analyze your
+                                    placement chances.
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="result-info-grid">
+                        <div class="result-info">
+                            <span>
+                                Outcome
+                            </span>
+                            <strong>
+                                {% if prediction %}
+                                    {% if "not likely" in prediction %}
+                                        Not Placed
+                                    {% else %}
+                                        Placed
+                                    {% endif %}
+                                {% else %}
+                                {% endif %}
+                            </strong>
+                        </div>
+                        <div class="result-info">
+                            <span>
+                                Model
+                            </span>
+                            <strong>
+                                ML
+                            </strong>
+                        </div>
+                        <div class="result-info">
+                            <span>
+                                Status
+                            </span>
+                            <strong>
+                                {% if prediction %}
+                                    Complete
+                                {% else %}
+                                    Waiting
+                                {% endif %}
+                            </strong>
+                        </div>
+                        <div class="result-info">
+                            <span>
+                                Type
+                            </span>
+                            <strong>
+                                Classification
+                            </strong>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
