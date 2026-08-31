@@ -851,3 +851,95 @@ a {
         padding: 15px;
     }
 }
+
+/* ===== MOBILE RESPONSIVE FIX ===== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .dashboard,
+    .cards,
+    .stats-container {
+        grid-template-columns: 1fr !important;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .prediction-form {
+        grid-template-columns: 1fr !important;
+    }
+
+    .result-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .gauge {
+        width: 180px;
+        height: 180px;
+        margin: auto;
+    }
+
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+/* ===== SMALL MOBILE ===== */
+
+@media (max-width: 480px) {
+
+    .main-content {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .gauge {
+        width: 150px;
+        height: 150px;
+    }
+}
